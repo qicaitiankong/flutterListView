@@ -1,5 +1,8 @@
+//import 'dart:ffi';
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+//import 'package:flutter/semantics.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,16 +20,25 @@ class MyApp extends StatelessWidget {
 
 class StateListZh extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return ListContentDetail();
-  }
+  createState() => ListContentDetail();
 }
 
 class ListContentDetail extends State {
+  var screenWidth;
   @override
   Widget build(BuildContext context) {
-    //创建按钮组
+    screenWidth = MediaQuery.of(context).size.width;
+    //第二行下部的行文字部件
+    Widget textSection = new Container(
+      color: Color.fromARGB(255, 234, 123, 234),
+      padding: const EdgeInsets.all(10),
+      child: new Text(
+        '''Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situated 1,578 meters above sea level, it is one of the larger Alpine Lakes. A gondola ride from Kandersteg, followed by a half-hour walk through pastures and pine forest, leads you to the lake, which warms to 20 degrees Celsius in the summer. Activities enjoyed here include rowing, and riding the summer toboggan run.
+        ''',
+        softWrap: true,
+      ),
+    );
+    //第二行创建按钮组
     Widget buttonSection = new Container(
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,16 +49,14 @@ class ListContentDetail extends State {
         ],
       ),
     );
-    //文字部件
-    Widget textSection = new Container(
-      color: Color.fromARGB(255, 234, 123, 234),
-      padding: const EdgeInsets.all(10),
-      child: new Text(
-        '''Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situated 1,578 meters above sea level, it is one of the larger Alpine Lakes. A gondola ride from Kandersteg, followed by a half-hour walk through pastures and pine forest, leads you to the lake, which warms to 20 degrees Celsius in the summer. Activities enjoyed here include rowing, and riding the summer toboggan run.
-        ''',
-        softWrap: true,
+    //第三行
+    Widget thirdRowSection = new Container(
+      child: new Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [BuildThirdRowLeftColumnContent()],
       ),
     );
+
     //MaterialApp
     return new MaterialApp(
       title: 'hjdfhjdhfjd',
@@ -64,14 +74,15 @@ class ListContentDetail extends State {
             ),
             titleSection,
             buttonSection,
-            textSection
+            textSection,
+            thirdRowSection,
           ],
         ),
       ),
     );
   }
 
-  //创建标题行
+  //第一行标题行
   Widget titleSection = new Container(
     padding: const EdgeInsets.all(32.0),
     child: new Row(
@@ -109,7 +120,7 @@ class ListContentDetail extends State {
     ),
   );
 
-  //创建单个按钮组件
+  //第二行中创建单个按钮组件
   Column buildButtonColumn(IconData icon, String label) {
     Color color = Theme.of(context).primaryColor;
     return new Column(
@@ -126,6 +137,32 @@ class ListContentDetail extends State {
           ),
         ),
       ],
+    );
+  }
+
+  //第三行左边列内容
+  Widget BuildThirdRowLeftColumnContent() {
+    print('screenWidth = $screenWidth');
+    var firstText = new Text('Strawberry Pavlova',
+        style: new TextStyle(fontSize: 24, color: Colors.black));
+    var black45 = Colors.black45;
+    var secondText = new Text(
+        '''hdsjdhjs jfdkjfd a  djkfd  fjdkjfkdj jfkdjfd , jf kdjfkdddd  fdjkfd jfkd fd f
+          f djkfjd idefjdm main fdjfdjfd aaa end ''',
+        softWrap: true, style: new TextStyle(fontSize: 12, color: black45));
+    var secondTextContainer = new Container(
+      width: screenWidth / 2.0,
+      height: 140,
+      color: Colors.yellow,
+      padding: const EdgeInsets.all(10),
+      child: secondText,
+    );
+    var column = new Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [firstText, secondTextContainer],
+    );
+    return new Container(
+      child: column,
     );
   }
 }
