@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ListContentDetail.dart';
-import 'ContainerTest.dart';
-import 'GridViewTest.dart';
-import 'stackTest.dart';
-import 'ListTileTest.dart';
-import 'TapboxA.dart';
-import 'TapboxB.dart';
+
+import 'TapboxC.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +15,7 @@ class MyApp extends StatelessWidget {
           appBar: new AppBar(
             title: new Text('首页'),
           ),
-          body: new ParentWidget(),
+          body: new ParentWidget2(),
         )
         //home: new ListContentDetail(),
         );
