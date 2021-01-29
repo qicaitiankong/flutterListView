@@ -1,8 +1,22 @@
 //使用material 创建列表测试页面
 import 'package:flutter/material.dart';
 
-class ListContentDetail extends State {
+//使用有状态部件创建列表
+class ListContentDetail extends StatefulWidget {
+  @override
+  createState() => ListContentDetailState();
+}
+
+class ListContentDetailState extends State<ListContentDetail> {
   var screenWidth;
+  static bool isCollected = false;
+  //收藏按钮点击
+  void _clickCollectButton() {
+    setState(() {
+      isCollected = !isCollected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -36,27 +50,19 @@ class ListContentDetail extends State {
     );
 
     //MaterialApp
-    return new MaterialApp(
-      title: 'hjdfhjdhfjd',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("首页"),
+    return new ListView(
+      children: [
+        new Image.asset(
+          'images/weixin.png',
+          width: 600.0,
+          height: 140.0,
+          fit: BoxFit.cover,
         ),
-        body: new ListView(
-          children: [
-            new Image.asset(
-              'images/weixin.png',
-              width: 600.0,
-              height: 140.0,
-              fit: BoxFit.cover,
-            ),
-            titleSection,
-            buttonSection,
-            textSection,
-            thirdRowSection,
-          ],
-        ),
-      ),
+        titleSection,
+        buttonSection,
+        textSection,
+        thirdRowSection,
+      ],
     );
   }
 
@@ -88,10 +94,6 @@ class ListContentDetail extends State {
               ),
             ],
           ),
-        ),
-        new Icon(
-          Icons.star,
-          color: Colors.red[500],
         ),
         new Text('41'),
       ],

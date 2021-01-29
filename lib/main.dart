@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'ListContentDetail.dart';
+import 'ContainerTest.dart';
+import 'GridViewTest.dart';
+import 'stackTest.dart';
+import 'ListTileTest.dart';
+import 'TapboxA.dart';
+import 'TapboxB.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,14 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "",
-      // home: new Scaffold(
-      //     appBar: new AppBar(
-      //       title: new Text('首页'),
-      //     ),
-      //     body: new StateListZh()),
-      home: new StateListZh(),
-    );
+        title: "",
+        home: new Scaffold(
+          appBar: new AppBar(
+            title: new Text('首页'),
+          ),
+          body: new ParentWidget(),
+        )
+        //home: new ListContentDetail(),
+        );
   }
 }
 
@@ -48,10 +55,4 @@ class secondStateTest extends State {
       ],
     );
   }
-}
-
-//使用有状态部件创建列表
-class StateListZh extends StatefulWidget {
-  @override
-  createState() => ListContentDetail();
 }
