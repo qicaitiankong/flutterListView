@@ -9,11 +9,18 @@ class ListContentDetail extends StatefulWidget {
 
 class ListContentDetailState extends State<ListContentDetail> {
   var screenWidth;
-  static bool isCollected = false;
+  bool isCollected = false;
   //收藏按钮点击
   void _clickCollectButton() {
     setState(() {
       isCollected = !isCollected;
+    });
+  }
+
+  void clickButton(TapUpDetails details) {
+    setState(() {
+      
+      print('按钮组点击$widget.key');
     });
   }
 
@@ -62,6 +69,11 @@ class ListContentDetailState extends State<ListContentDetail> {
         buttonSection,
         textSection,
         thirdRowSection,
+        new IconButton(
+            icon: isCollected
+                ? Image.asset('images/reba.png')
+                : Image.asset('images/weixin.png'),
+            onPressed: _clickCollectButton)
       ],
     );
   }
@@ -101,22 +113,26 @@ class ListContentDetailState extends State<ListContentDetail> {
   );
 
   //第二行中创建单个按钮组件
-  Column buildButtonColumn(IconData icon, String label) {
+  Widget buildButtonColumn(IconData icon, String label) {
     Color color = Theme.of(context).primaryColor;
-    return new Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        new Icon(icon, color: color),
-        new Container(
-          margin: const EdgeInsets.only(top: 8.0),
-          child: new Text(
-            label,
-            style: new TextStyle(
-                fontWeight: FontWeight.w400, fontSize: 12.0, color: color),
+    return new GestureDetector(
+    
+      onTapUp: clickButton,
+      child: new Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          new Icon(icon, color: color),
+          new Container(
+            margin: const EdgeInsets.only(top: 8.0),
+            child: new Text(
+              label,
+              style: new TextStyle(
+                  fontWeight: FontWeight.w400, fontSize: 12.0, color: color),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
