@@ -19,7 +19,6 @@ class ListContentDetailState extends State<ListContentDetail> {
 
   void clickButton(TapUpDetails details) {
     setState(() {
-      
       print('按钮组点击$widget.key');
     });
   }
@@ -116,7 +115,6 @@ class ListContentDetailState extends State<ListContentDetail> {
   Widget buildButtonColumn(IconData icon, String label) {
     Color color = Theme.of(context).primaryColor;
     return new GestureDetector(
-    
       onTapUp: clickButton,
       child: new Column(
         mainAxisSize: MainAxisSize.min,
@@ -257,4 +255,18 @@ class ListContentDetailState extends State<ListContentDetail> {
   }
   //5个五角星下面的一行 end
 
+}
+
+class testNavi extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      initialRoute: 'testNavi',
+      // onGenerateRoute: (RouteSettings settings) {
+      //   WidgetBuilder builder;
+
+      //   return MaterialPageRoute(builder: builder, settings: settings);
+      // }
+    );
+  }
 }
